@@ -4,15 +4,19 @@ import Button from '../Button/Button';
 import { useState } from 'react';
 import { nanoid } from 'nanoid'; // import propTypes from "prop-types"
 
-const Product = ({ id, colors, sizes, name, title, basePrice }) => {
+const Product = ({ colors, sizes, name, title, basePrice }) => {
   const [currentColor, setCurrentColor] = useState(colors[0]);
-  const [currentSize, setCurrentSize] = useState(sizes[0].name);
+  const [currentSize, setCurrentSize] = useState(sizes[0]);
   const prepareColorClassName = color => {
     return styles['color' + color[0].toUpperCase() + color.substr(1).toLowerCase()];
   };
 
   const changeColor = color => {
     setCurrentColor(color);
+  };
+
+  const changeSize = size => {
+    setCurrentSize(size);
   };
   return (
     <article className={styles.product}>
@@ -34,7 +38,10 @@ const Product = ({ id, colors, sizes, name, title, basePrice }) => {
             <ul className={styles.choices}>
               {sizes.map(size => (
                 <li key={nanoid()}>
-                  <button type='button' className={clsx(size.name === currentSize && styles.active)}>
+                  <button
+                    onClick={() => changeSize(size)}
+                    type='button'
+                    className={clsx(size === currentSize && styles.active)}>
                     {size.name}
                   </button>
                 </li>
@@ -44,12 +51,12 @@ const Product = ({ id, colors, sizes, name, title, basePrice }) => {
           <div className={styles.colors}>
             <h3 className={styles.optionLabel}>Colors</h3>
             <ul className={styles.choices}>
-              {colors.map(item => (
+              {colors.map(color => (
                 <li key={nanoid()}>
                   <button
-                    onClick={() => changeColor(item)}
+                    onClick={() => changeColor(color)}
                     type='button'
-                    className={clsx(prepareColorClassName(item), item === currentColor && styles.active)}
+                    className={clsx(prepareColorClassName(color), color === currentColor && styles.active)}
                   />
                 </li>
               ))}
