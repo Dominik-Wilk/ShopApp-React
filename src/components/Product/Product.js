@@ -4,12 +4,15 @@ import Button from '../Button/Button';
 import { useState } from 'react';
 import { nanoid } from 'nanoid'; // import propTypes from "prop-types"
 
-const Product = ({ colors, sizes, name, title, basePrice }) => {
+const Product = ({ id, colors, sizes, name, title, basePrice }) => {
   const [currentColor, setCurrentColor] = useState(colors[0]);
   const [currentSize, setCurrentSize] = useState(sizes[0].name);
-
   const prepareColorClassName = color => {
     return styles['color' + color[0].toUpperCase() + color.substr(1).toLowerCase()];
+  };
+
+  const changeColor = color => {
+    setCurrentColor(color);
   };
   return (
     <article className={styles.product}>
@@ -42,22 +45,14 @@ const Product = ({ colors, sizes, name, title, basePrice }) => {
             <h3 className={styles.optionLabel}>Colors</h3>
             <ul className={styles.choices}>
               {colors.map(item => (
-                <li key={item}>
+                <li key={nanoid()}>
                   <button
+                    onClick={() => changeColor(item)}
                     type='button'
                     className={clsx(prepareColorClassName(item), item === currentColor && styles.active)}
                   />
                 </li>
               ))}
-              {/* <li>
-                <button type='button' className={clsx(styles.colorBlack, styles.active)} />
-              </li>
-              <li>
-                <button type='button' className={clsx(styles.colorRed)} />
-              </li>
-              <li>
-                <button type='button' className={clsx(styles.colorWhite)} />
-              </li> */}
             </ul>
           </div>
           <Button className={styles.button}>
