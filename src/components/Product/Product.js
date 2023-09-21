@@ -14,10 +14,13 @@ const Product = ({ colors, sizes, name, title, basePrice }) => {
   const changeColor = color => {
     setCurrentColor(color);
   };
-
   const changeSize = size => {
     setCurrentSize(size);
   };
+  const getPrice = () => {
+    return (basePrice += currentSize.additionalPrice);
+  };
+
   return (
     <article className={styles.product}>
       <div className={styles.imageContainer}>
@@ -30,7 +33,7 @@ const Product = ({ colors, sizes, name, title, basePrice }) => {
       <div>
         <header>
           <h2 className={styles.name}>{title}</h2>
-          <span className={styles.price}>Price: {basePrice}$</span>
+          <span className={styles.price}>Price: {getPrice()}$</span>
         </header>
         <form>
           <div className={styles.sizes}>
