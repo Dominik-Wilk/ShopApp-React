@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { nanoid } from 'nanoid';
 import styles from './OptionSize.module.scss';
+import propTypes from 'prop-types';
 
 const OptionSize = ({ sizes, currentSize, setCurrentSize }) => {
   const changeSize = size => {
@@ -21,6 +22,12 @@ const OptionSize = ({ sizes, currentSize, setCurrentSize }) => {
       ))}
     </ul>
   );
+};
+
+OptionSize.propTypes = {
+  sizes: propTypes.array.isRequired,
+  currentSize: propTypes.object.isRequired,
+  setCurrentSize: propTypes.func.isRequired,
 };
 
 export default OptionSize;

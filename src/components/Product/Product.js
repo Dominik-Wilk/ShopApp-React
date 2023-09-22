@@ -2,7 +2,7 @@ import styles from './Product.module.scss';
 import ProductImage from '../ProductImage/ProductImage';
 import ProductForm from '../ProductForm/ProductForm';
 import { useMemo, useState } from 'react';
-// import propTypes from "prop-types"
+import propTypes from 'prop-types';
 
 const Product = ({ colors, sizes, name, title, basePrice }) => {
   const [currentColor, setCurrentColor] = useState(colors[0]);
@@ -44,6 +44,14 @@ const Product = ({ colors, sizes, name, title, basePrice }) => {
       </div>
     </article>
   );
+};
+
+Product.propTypes = {
+  colors: propTypes.array.isRequired,
+  sizes: propTypes.array.isRequired,
+  name: propTypes.string.isRequired,
+  title: propTypes.string.isRequired,
+  basePrice: propTypes.number.isRequired,
 };
 
 export default Product;

@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { nanoid } from 'nanoid';
 import styles from './OptionColor.module.scss';
+import propTypes from 'prop-types';
 
 const OptionColor = ({ setCurrentColor, currentColor, colors }) => {
   const changeColor = color => {
@@ -24,6 +25,12 @@ const OptionColor = ({ setCurrentColor, currentColor, colors }) => {
       ))}
     </ul>
   );
+};
+
+OptionColor.propTypes = {
+  colors: propTypes.array.isRequired,
+  currentColor: propTypes.string.isRequired,
+  setCurrentColor: propTypes.func.isRequired,
 };
 
 export default OptionColor;
