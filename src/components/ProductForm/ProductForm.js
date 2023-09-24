@@ -24,10 +24,15 @@ const ProductForm = ({ addToCart, sizes, setCurrentSize, currentSize, colors, cu
 
 ProductForm.propTypes = {
   addToCart: propTypes.func.isRequired,
-  sizes: propTypes.array.isRequired,
+  sizes: propTypes.arrayOf(
+    propTypes.shape({
+      name: propTypes.string.isRequired,
+      additionalPrice: propTypes.number.isRequired,
+    })
+  ),
   setCurrentSize: propTypes.func.isRequired,
   currentSize: propTypes.object.isRequired,
-  colors: propTypes.array.isRequired,
+  colors: propTypes.arrayOf(propTypes.string.isRequired),
   currentColor: propTypes.string.isRequired,
   setCurrentColor: propTypes.func.isRequired,
 };
