@@ -53,7 +53,7 @@ Product.propTypes = {
       additionalPrice: propTypes.number.isRequired,
     })
   ),
-  colors: propTypes.arrayOf(propTypes.string.isRequired),
+  colors: propTypes.arrayOf(propTypes.string).isRequired,
   name: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
   basePrice: propTypes.number.isRequired,
